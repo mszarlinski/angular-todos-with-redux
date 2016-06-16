@@ -1,0 +1,5 @@
+<div>
+    <todo-item ng-repeat="todo in $ctrl.todos track by todo.id" todo="todo"></todo-item>
+
+    <new-todo-panel on-create="$ctrl.addTodo(text)"></new-todo-panel>
+</div>

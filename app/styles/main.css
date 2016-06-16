@@ -81,3 +81,7 @@ body {
     border-bottom: 0;
   }
 }
+
+.todo-item.completed {
+  text-decoration: line-through;
+}
