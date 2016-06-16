@@ -6,14 +6,18 @@ angular.module('todos')
         bindings: {
             onCreate: '&'
         },
-        controller: function () {
+        controller: function (Store, ActionType) {
             var vm = this;
 
-            vm.text = '';
+            this.$onInit = function () {
+                vm.createTodo = function () {
+                    Store.dispatch({
+                        type: ActionType.CREATE_TODO,
+                        todoText: vm.text
+                    });
 
-            vm.createTodo = function () {
-                vm.onCreate({text: vm.text});
-                vm.text = '';
+                    vm.text = '';
+                };
             };
         }
     });

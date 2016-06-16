@@ -3,19 +3,18 @@
 angular.module('todos')
     .component('todosScreen', {
         templateUrl: 'scripts/todos/screen/todosScreen.html',
-        controller: function () {
+        controller: function ($scope, Store) {
             var vm = this;
 
-            vm.idSequence = 0;
+            this.$onInit = function () {
+                vm.todos = [];
 
-            vm.todos = [{
-                id: vm.idSequence++,
-                text: 'First todo',
-                completed: false
-            }];
+                Store.subscribe(function (state) {
+                    // $scope.$applyAsync(function () {
+                    vm.todos = angular.copy(state.todos);
+                    // });
+                });
 
-            vm.addTodo = function (text) {
-                vm.todos.push({id: vm.idSequence++, text: text, completed: false});
             };
         }
     });
